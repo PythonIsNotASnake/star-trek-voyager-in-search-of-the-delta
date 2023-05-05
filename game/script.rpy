@@ -15,6 +15,7 @@ default book = False
 # Hier beginnt das Spiel.
 label start:
 
+    play music "audio/background.mp3"
     scene bg warp core
     with fade
 
