@@ -116,7 +116,7 @@ label first_attack:
 
     janeway "Energie auf die Waffensysteme."
 
-    show seven at rigth
+    show seven at right
     with easeinright
 
     seven "Waffensysteme bereit."
@@ -179,7 +179,7 @@ label first_fight_continue:
     scene bg warp core
     with fade
     show engineer at center
-    with moveincenter
+    with moveinbottom
 
     engineer "Captain, wir haben einen Hüllenbruch erlitten."
     ensign "Wie lauten Ihre Befehle?"
