@@ -3,3 +3,5 @@ HELP.md
 build/
 /game/saves/
 game/cache/
+log.txt
+.android.json
