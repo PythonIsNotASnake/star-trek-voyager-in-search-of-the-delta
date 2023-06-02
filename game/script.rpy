@@ -14,7 +14,8 @@ define queen = Character('Borg Königin', color="#143421")
 
 define ferengi = Character('Ferengi', color="#ffa54d")
 
-default book = False
+default hasFrequence = False
+default hasCorrectFrequence = False
 
 
 # Hier beginnt das Spiel.
@@ -37,17 +38,17 @@ label intro:
     scene bg voyager bridge
     with fade
 
-    show ensign at right
+    show seven at right
     with dissolve
 
-    ensign "Captain, ein Raumschiff nähert sich unseren Koordinaten."
+    seven "Captain, ein Raumschiff nähert sich unseren Koordinaten."
 
     show janeway smile at left
     with dissolve
 
     menu:
         "Identifizieren":
-            janeway "Identifizieren Sie das Raumschiff, Fähnrich."
+            janeway "Identifizieren Sie das Raumschiff, Seven."
             jump identify
 
         "Kaffee trinken und identifizieren":
@@ -56,16 +57,16 @@ label intro:
             "Captain Janeway holt sich genüsslich einen Kaffee aus dem Replikator."
             show janeway smile at left
             with easeinleft
-            janeway "Fähnrich, das Raumschiff sofort identifizieren."
+            janeway "Seven, das Raumschiff identifizieren."
             jump identify
 
 label identify:
-    ensign "Es handelt sich um einen Borg-Kubus."
+    seven "Es handelt sich um einen Borg-Kubus."
     
     menu:
         "Fliehen":
-            janeway "Wie stehen unsere Chancen zu fliehen, Fähnrich?"
-            ensign "Das feindliche Schiff ist auf Abfang-Kurs. Aufeinandertreffen in fünf Minuten."
+            janeway "Wie stehen unsere Chancen zu fliehen, Seven?"
+            seven "Das feindliche Schiff ist auf Abfang-Kurs. Aufeinandertreffen in fünf Minuten."
             jump first_confrontation
 
         "Auf Konfrontation vorbereiten":
@@ -182,7 +183,7 @@ label first_fight_continue:
     with moveinbottom
 
     engineer "Captain, wir haben einen Hüllenbruch erlitten."
-    ensign "Wie lauten Ihre Befehle?"
+    engineer "Wie lauten Ihre Befehle?"
 
     scene bg space
     show voyager damaged at left
@@ -196,7 +197,7 @@ label first_fight_continue:
             with vpunch
             with hpunch
             "Die USS Voyager hat einen schweren Treffer erlitten."
-            jump end_destroyed
+            jump end_fight_destroyed
         "Fliehen":
             jump first_escape
         "Warp-Kern abwerfen":
@@ -229,9 +230,15 @@ label escape_warp_seven:
     ensign "Wie Sie wünschen Captain."
 
     scene bg space warp
-    with blinds
+    with fade
+    show voyager warp at center
+    with moveinleft
 
-    pause 1.5
+    "Die Voyager fliegt mit Warp Sieben..."
+
+    hide voyager warp
+    with moveoutright
+
     jump worm_hole_danger
 
 label escape_warp_nine:
@@ -243,11 +250,11 @@ label escape_warp_nine:
     ensign "Wie Sie wünschen Captain."
 
     scene bg space warp
-    with blinds
+    with fade
     show voyager warp at center
     with moveinleft
 
-    pause 1.5
+    "Die Voyager fliegt mit Warp Neun..."
 
     hide voyager warp
     with moveoutright
@@ -261,7 +268,7 @@ label escape_warp_nine:
 
 label worm_hole_danger:
     scene bg wormhole
-    with blinds
+    with fade
 
     show voyager warp at left
     with moveinleft
@@ -274,19 +281,35 @@ label worm_hole_danger:
         "Wurmloch betreten":
             hide voyager
             with moveoutright
-            jump end_destroyed
+            jump end_wormhole_destroyed
         "Weiterfliegen":
-            "WIP"
+            hide voyager
+            with moveoutright
+            jump worm_hole_journey
+
+label worm_hole_journey:
+    scene bg space
+    with fade
+
+    show voyager at center
+    with moveinleft
+
+    pause 2.0
+
+    hide voyager
+    with moveoutright
+
+    jump worm_hole_save
 
 label worm_hole_save:
     scene bg wormhole
-    with blinds
+    with fade
 
     show voyager warp at left
     with moveinleft
     show voyager at left
 
-    ensign "Captain, ein Wurmloch voraus."
+    ensign "Captain, schon wieder ein Wurmloch voraus."
     ensign "Sollen wir hindurch fliegen?"
 
     menu:
@@ -296,6 +319,7 @@ label worm_hole_save:
             jump end_success
         "Weiterfliegen":
             "WIP"
+            return
 
 
 # end worm hole -----------------------------------------------------
@@ -306,13 +330,106 @@ label worm_hole_save:
 label ferengi:
     scene bg space
     show dkora at right
-    with blinds
+    with fade
 
     show voyager warp at left
     with moveinleft
     show voyager at left
 
-    "First Escape WIP"
+    seven "Ein Ferengi Schiff genau vor uns."
+    seven "Was sollen wir tun?"
+
+    menu:
+        "Kontakt aufnehmen":
+            jump ferengi_contact
+        "Ignorieren und weiterfliegen":
+            jump ferengi_ignore
+
+label ferengi_contact:
+    scene bg voyager bridge
+    with fade
+
+    show janeway smile at left
+    with moveinleft
+    janeway "Öffnen Sie einen Kanal!"
+
+    show seven at right
+    with moveinright
+    seven "Grußfrequenzen aktiviert."
+    seven "Sie antworten."
+    janeway "Auf den Schirm"
+
+    hide seven
+    with moveoutright
+    "..."
+    show ferengi at right
+    with dissolve
+
+    janeway "Ich bin Kapitän Janeway vom Föderations Raumschiff Voyager."
+    ferengi "Mein Name ist Nanzo. Ich bin Händler und immer auf der Suche nach lukrativer Beute... äh ich meinte einem fairen Handel."
+    ferengi "Wie ich sehe haben Sie Kampfspuren von einer Auseinandersetzung mit den Borg."
+    ferengi "Zu Ihrem Glück besitze ich eine Phaser Frequenz, welche einem Borg Kubus gefährlich werden kann."
+    ferengi "Wären Sie offen für einen Handel?"
+
+    menu:
+        "Mit Nanzo verhandeln":
+            jump ferengi_start_deal
+        "Nicht auf Handel einlassen":
+            janeway "Tut mir Leid, aber ich verhandel nicht mit Ferengi."
+            ferengi "Ihr Pech. Ich werde schon einen Abnehmer finden. (garstiges Gelächter)"
+            jump ferengi_deal_ended
+
+label ferengi_start_deal:
+    janeway "Was erwarten Sie als Gegenleistung für diese Information?"
+    ferengi "20 Barren feinstes Latinum."
+
+    menu:
+        "20 Barren Latinum zahlen":
+            janeway "Wir sind bereit Ihnen die 20 Barren Latinum zu zahlen."
+            ferengi "Ausgezeichnet! Teleportieren Sie das Latinum auf mein Schiff und ich übergebe Ihnen die Frequenz."
+            "Latinum wird transportiert..."
+            ferengi "Das Latinum ist bei mir angekommen. Hier die besagte Frequenz: *****"
+            $ hasFrequence = True
+            $ hasCorrectFrequence = True
+            jump ferengi_deal_ended
+        "Den Preis drücken":
+            janeway "Wir sind nur in Besitz von 10 Barren Latinum. Diese könnten wir Ihnen überlassen."
+            ferengi "Das ist aber viel weniger. Lassen Sie mich überlegen."
+            ferengi "..."
+            ferengi "Gut. Abgemacht. Schicken Sie das Latinum auf mein Schiff und ich übermittel Ihnen die besagte Frequenz."
+            "Latinum wird transportiert..."
+            ferengi "Das Latinum ist bei mir angekommen. Hier die besagte Frequenz: *****"
+            $ hasFrequence = True
+            $ hasCorrectFrequence = False
+            jump ferengi_deal_ended
+        "Handel ablehnen":
+            janeway "Wir haben nicht so viel Latinum und das was wir haben benötigen wir für wichtigere Güter."
+            ferengi "Ihr Pech. Ich werde schon einen Abnehmer finden. (garstiges Gelächter)"
+            jump ferengi_deal_ended
+
+label ferengi_deal_ended:
+    scene bg space
+    show voyager at left
+    show dkora at right
+    with fade
+
+    pause 1.5
+
+    hide dkora
+    with moveoutright
+
+    janeway "Fähnrich, wir fliegen weiter."
+    hide voyager
+    with moveoutright
+    return
+
+label ferengi_ignore:
+    janeway "Ignorieren. Ich traue einem Ferengi Schiff soweit draußen nicht."
+    janeway "Fähnrich, wir fliegen weiter."
+
+    hide voyager
+    with moveoutright
+    
     return
 
 # end ferengi -------------------------------------------------------
@@ -326,8 +443,32 @@ label ferengi:
 
 
 # End scenarios -----------------------------------------------------
-label end_destroyed:
-    "Destroyed End WIP"
+label end_fight_destroyed:
+    show voyager damaged
+    with hpunch
+
+    hide voyager
+    with vpunch
+
+    "Die Schilde haben nicht standgehalten."
+    "Die Borg konnten die Voyager zerstören."
+    "Nun wird die Besatzung der Voyager niemals in den Alpha Quadranten zurückkehren."
+
+    return
+
+label end_wormhole_destroyed:
+    scene bg space
+    with fade
+
+    show core at center
+    with moveinleft
+
+    "Das Wurmloch war instabil und ist kolabiert."
+    "Die Außenhülle der Voyager ist gerissen und die Besatzung konnte nicht rechtzeitig gerettet werden."
+
+    hide core
+    with moveoutright
+
     return
 
 label end_assimilate:
@@ -335,11 +476,32 @@ label end_assimilate:
     return
 
 label end_success:
-    "Successful End WIP"
+    scene bg space
+    with fade
+
+    show voyager at center
+    with moveinleft
+
+    "Die Voyager konnte erfolgreich entkommen."
+    "Keine Borg in der Umgebung."
+    "Die Voyager setzt ihre Reise durch den Delta Quadranten fort..."
+
     return
 
 label end_warp_core:
-    janeway "Maschienendeck, werfen Sie den Warp-Kern ab!"
-    # Beide Schiffe werden zerstört
-    "Warp Core End WIP"
+    janeway "Maschinendeck, werfen Sie den Warp-Kern ab!"
+    show core at center
+    with moveinbottom
+
+    pause 0.5
+
+    hide voyager
+    hide cube
+    with vpunch
+
+    "Beide Schiffe wurden zerstört."
+    "Sie haben die Borg daran gehindert die Besatzung der Voyager zu assimilieren."
+    "Bedauerlicherweise haben Sie dafür die gesamte Besatzung geopfert."
+    "Das war es bestimmt wert."
+
     return
