@@ -26,10 +26,17 @@ label escape_warp_seven:
     show voyager warp at center
     with moveinleft
 
-    "Die Voyager fliegt mit Warp Sieben..."
+    "Die Voyager flieht mit Warp Sieben..."
 
     hide voyager warp
     with moveoutright
+
+    scene bg space
+    with fade
+    show chapter2
+    with Dissolve(2.0)
+    hide chapter2
+    with Dissolve(2.0)
 
     jump worm_hole_danger
 
@@ -46,10 +53,17 @@ label escape_warp_nine:
     show voyager warp at center
     with moveinleft
 
-    "Die Voyager fliegt mit Warp Neun..."
+    "Die Voyager flieht mit Warp Neun..."
 
     hide voyager warp
     with moveoutright
+
+    scene bg space
+    with fade
+    show chapter2
+    with Dissolve(2.0)
+    hide chapter2
+    with Dissolve(2.0)
 
     jump ferengi
 
@@ -110,9 +124,9 @@ label worm_hole_save:
             with moveoutright
             jump end_success
         "Weiterfliegen":
-            "WIP"
-            return
-
+            hide voyager
+            with moveoutright
+            jump second_contact
 
 # end worm hole -----------------------------------------------------
 
@@ -213,7 +227,8 @@ label ferengi_deal_ended:
     janeway "Fähnrich, wir fliegen weiter."
     hide voyager
     with moveoutright
-    return
+    
+    jump second_contact
 
 label ferengi_ignore:
     janeway "Ignorieren. Ich traue einem Ferengi Schiff soweit draußen nicht."
@@ -222,6 +237,6 @@ label ferengi_ignore:
     hide voyager
     with moveoutright
     
-    return
+    jump second_contact
 
 # end ferengi -------------------------------------------------------

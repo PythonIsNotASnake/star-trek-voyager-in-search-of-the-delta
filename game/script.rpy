@@ -36,11 +36,17 @@ label start:
 label logo:
     scene bg space
     show intro
-    with moveinbottom
-    #with Dissolve(10.0)
+    with MoveTransition(delay=4.0, enter=_movebottom)
+    hide intro
+    with Dissolve(5.0)
     jump intro
 
 label intro:
+    scene bg space
+    show chapter1
+    with Dissolve(2.0)
+    hide chapter1
+    with Dissolve(2.0)
 
     scene bg voyager bridge
     with fade

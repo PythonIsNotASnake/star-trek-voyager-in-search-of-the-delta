@@ -1,28 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 182, in script
-    with moveincenter
-  File "game/script.rpy", line 182, in <module>
-    with moveincenter
-NameError: name 'moveincenter' is not defined
+  File "game/script.rpy", line 40, in script
+    with MoveTransition(delay=10.0, enter=_movebottom, time_warp=time_warp, enter_time_warp=in_time_warp)
+  File "game/script.rpy", line 40, in <module>
+    with MoveTransition(delay=10.0, enter=_movebottom, time_warp=time_warp, enter_time_warp=in_time_warp)
+NameError: name 'time_warp' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 182, in script
-    with moveincenter
-  File "D:\bernd\renpy-8.0.3-sdk\renpy\ast.py", line 1651, in execute
+  File "game/script.rpy", line 40, in script
+    with MoveTransition(delay=10.0, enter=_movebottom, time_warp=time_warp, enter_time_warp=in_time_warp)
+  File "C:\Users\bernd.mampe\renpy-8.0.3-sdk\renpy\ast.py", line 1651, in execute
     trans = renpy.python.py_eval(self.expr)
-  File "D:\bernd\renpy-8.0.3-sdk\renpy\python.py", line 1092, in py_eval
+  File "C:\Users\bernd.mampe\renpy-8.0.3-sdk\renpy\python.py", line 1092, in py_eval
     return py_eval_bytecode(code, globals, locals)
-  File "D:\bernd\renpy-8.0.3-sdk\renpy\python.py", line 1085, in py_eval_bytecode
+  File "C:\Users\bernd.mampe\renpy-8.0.3-sdk\renpy\python.py", line 1085, in py_eval_bytecode
     return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 182, in <module>
-    with moveincenter
-NameError: name 'moveincenter' is not defined
+  File "game/script.rpy", line 40, in <module>
+    with MoveTransition(delay=10.0, enter=_movebottom, time_warp=time_warp, enter_time_warp=in_time_warp)
+NameError: name 'time_warp' is not defined
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.0.3.22090809
 Star Trek Voyager - In search of the Delta 1.0
-Thu May 18 21:36:59 2023
+Fri Aug 25 10:30:52 2023
