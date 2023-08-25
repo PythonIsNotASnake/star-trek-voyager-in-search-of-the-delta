@@ -16,6 +16,8 @@ define ferengi = Character('Ferengi', color="#ffa54d")
 
 default hasFrequence = False
 default hasCorrectFrequence = False
+default tradeSevenWithoutResistance = False
+default isSevenEvil = False
 
 
 # Hier beginnt das Spiel.
