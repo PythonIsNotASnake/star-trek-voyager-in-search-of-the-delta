@@ -20,7 +20,7 @@ label second_contact:
     with moveinright
 
     ensign "Wir konnten den Borg entkommen."
-    janeway "Wenigstens etwas erfreuliches."
+    janeway "Wenigstens etwas Erfreuliches."
     janeway "Janeway an Maschinendeck. Wie ist die Lage bei Ihnen."
 
     scene bg warp core
@@ -71,7 +71,7 @@ label queen_contact:
     show queen at right
     with moveinright
 
-    janeway "Ich bin Kathryn Janeway. Captain des Sternenflotten Schiffs USS Voyager. Mit wem habe ich das Vergnügen?"
+    janeway "Ich bin Kathryn Janeway. Captain des Föderationsraumschiffs USS Voyager. Mit wem habe ich das Vergnügen?"
     queen "Ich bin der Anfang, das Ende, die Eine, die Viele ist. Ich bin die Borg."
     
     menu:
@@ -127,7 +127,7 @@ label kidnapping:
     queen "Entferne dich Drohne."
 
     hide borg
-    with moveoutright
+    with moveoutbottom
 
     queen "Es ist deine Bestimmung Teil des Kollektivs zu sein und das Kollektiv an meiner Seite zu führen."
 
@@ -178,7 +178,7 @@ label thinking_after_kidnapping:
 
     menu:
         "Verfolgen":
-            janeway "Nehmen Sie die Verfolgung."
+            janeway "Nehmen Sie die Verfolgung auf."
             janeway "Finden Sie diesen Borg Kubus."
             janeway "Finden Sie Seven of Nine."
             ensign "Wir scannen den Sektor nach Anzeichen ab."
