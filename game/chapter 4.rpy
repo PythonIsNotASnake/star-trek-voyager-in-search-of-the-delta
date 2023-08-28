@@ -58,7 +58,17 @@ label bad_seven:
             jump prisoner
 
 label prisoner:
-    ""
+    queen "Dann sehe ich keinen anderen Weg, als dich mit Gewalt ins Kollektiv aufzunehmen."
+    queen "Drohnen, führt sie ab."
+    show borg at center
+    with moveinbottom
+    borg "Fügen Sie sich Seven of Nine und folgen Sie uns."
+    seven "Argh..."
+    hide seven
+    hide borg
+    with moveoutbottom
+    queen "Bald wird Seven of Nine wieder dem Kollektiv angehören. (Hämisches Gelächter)"
+    jump voyager_preparation
 
 label spy:
     menu:
@@ -78,12 +88,362 @@ label spy:
             seven "Könnte ich wohl Zugang zu den Systemen erhalten?"
             queen "Wozu brauchst du denn Zugang zu den Systemen der Borg?"
             menu:
-                "":
-
-                "":
-            jump spy
+                "Erfahren was nach Austritt geschah":
+                    seven "Ich möchte gerne erfahren, was es für Neuerungen der Borg gibt. Seit meinem Austritt aus dem Kollektiv wurden doch bestimmt neue Spezien hinzugefügt."
+                    queen "Das klingt plausibel. Du sollst deinen Zugang erhalten."
+                    "Seven of Nine verbindet sich mit den Systemen."
+                    "Sie findet eine Frequenz, um die Schilde des Borg Kubus zu durchdringen."
+                    $ hasFrequence = True
+                    $ hasCorrectFrequence = True
+                    $ hasSevenFrequence = True
+                    jump spy
+                "Informationen über Schiffssysteme":
+                    seven "Ich würde gerne mehr über die Schiffssysteme in Erfahrung bringen."
+                    queen "Das ist momentan nicht nötig. Oder möchtest du das Kollektiv etwa ausspähen um Informationen an die Voyager zu senden?"
+                    queen "Das werde ich unterbinden. Es ist Zeit, dich ins Kollektiv einzubinden."
         "Keine Fragen":
             seven "Nein. Ich weiß alles, was ich wissen muss."
             queen "Sehr schön. Dann können wir alles für die Prozedur vorbereiten. Bald bist du wieder ein Teil von uns."
+    hide seven
+    hide queen
+    with moveoutright
+
+    jump voyager_preparation
+
+label voyager_preparation:
+    scene bg voyager bridge
+    with fade
+    show janeway smile at left
+    with moveinleft
+    janeway "Gibt es bereits eine Spur vom Borg Kubus?"
+    show ensign at right
+    with moveinright
+    ensign "Wir konnten den Kubus lokalisieren."
+    janeway "Sehr gut."
+    jump rescue_journey_talk
+
+label rescue_journey_talk:
+    menu:
+        "Wie lange bis wir dort sind?":
+            janeway "Fähnrich, wann werden wir den Standort des Borg Kubus erreichen?"
+            ensign "In ungefähr zwei Stunden."
+            menu:
+                "Akzeptabel":
+                    janeway "Sehr schön. Bis dahin können wir uns auf den Ernstfall vorbereiten."
+                    ensign "Sehr wohl Captain."
+                    jump rescue_journey_talk
+                "Zu langsam":
+                    janeway "Geht das nicht schneller?"
+                    janeway "Janeway an Maschinendeck. Können wir mit einer höheren Geschwindigkeit fliegen?"
+                    engineer "Wir fliegen aktuell mit Warp 4. Maximal Warp 5 wäre möglich. Andernfalls können die Systeme irreparabel beschädigt werden."
+                    janeway "Danke für die Auskunft."
+                    janeway "Fähnrich, sie haben es gehört. Gehen Sie auf Warp 5."
+                    ensign "Wie Sie wünschen Captain."
+                    jump rescue_journey_talk
+
+        "Wie steht es um die Schiffssysteme?":
+            janeway "Maschinendeck bitte kommen."
+            jump machine_talk
+        "Weiterfliegen":
+            jump rescue_location
+
+label machine_talk:
+    scene bg warp core
+    with fade
+    show engineer at center
+    with moveinbottom
+    engineer "Hier Maschinendeck. Was kann ich für Sie tun?"
+    jump machine_talk_decisions
+
+label machine_talk_decisions:
+    menu:
+        "Schilde":
+            janeway "Ist mit den Schilden alles in Ordnung? Dies soll eine Rettungsmission werden und kein Himmelfahrtskommando."
+            engineer "Die Schilde sind voll funktionstüchtig. Es sollten keine Komplikationen auftreten."
+            janeway "Wunderbar."
+            jump machine_talk_decisions
+        "Waffensysteme":
+            janeway "Wie steht es um unsere Waffenphalanx?"
+            engineer "Der letzte Scan hat keine Fehler oder andere Beeinträchtigungen gefunden."
+            janeway "Ausgezeichnet."
+            jump machine_talk_decisions
+        "Keine weiteren Fragen":
+            janeway "Danke. Keine weiteren Fragen."
+            scene bg voyager bridge
+            show janeway smile at left
+            show ensign at right
+            with fade
+            jump rescue_journey_talk
+
+label rescue_location:
+    scene bg space warp
+    show voyager warp at center
+    with fade
+    "Die Voyager erreicht ihr Ziel in Kürze."
+    hide voyager warp
+    with moveoutright
+
+    scene bg space
+    show cube at right
+    with fade
+    show voyager warp at left
+    with moveinleft
+    show voyager
+
+    "Die USS Voyager hat endlich den Borg Kubus erreicht, auf welchem sich Seven of Nine aufhält."
+
+    scene bg voyager bridge
+    show janeway smile at left
+    with fade
+
+    jump rescue_decisions
+
+label rescue_decisions:
+    menu:
+        "Borg Kubus rufen":
+            jump negotiation
+        "Rettungstrupp beamen":
+            jump beam
+        "Borg Kubus unter Beschuss nehmen":
+            jump attack_queen
+
+label negotiation:
+    janeway "Rufen Sie den Borg Kubus."
+    show queen at right
+    with moveinright
+    queen "Captain Janeway. Welch unerwartete Überraschung Sie wiederzusehen."
+    janeway "Schluss mit den Höflichkeitsfloskeln. Was haben Sie mit Seven angestellt."
+    show queen laughing
+    queen "Oh. Sie meinen Seven of Nine. Seven of Nine wird gerade dem Kollektiv hinzugefügt. Ich fürchte, Sie kommen zu spät."
+    janeway "Fähnrich, Verbindung trennen."
+    hide queen
+    with moveoutright
+    jump rescue_decisions
+
+label beam:
+    if hasSevenFrequence == True:
+        ensign "Uns erreicht eine Nachricht vom Borg Kubus."
+        janeway "Was steht drin?"
+        ensign "Es scheint eine Art Frequenz zu sein."
+        janeway "Die schickt uns bestimmt Seven."
+    
+    elif hasFrequence == False:
+        scene bg space
+        show voyager at left
+        show cube shield at right
+        with fade
+
+        engineer "Aufgrund ihrer Schilde sind wir nicht in der Lage jemanden hinüber zu beamen."
+        ensign "Der Borg Kubus legt Energie auf seine Waffensysteme und..."
+        
+        show voyager damaged
+        show cube attack
+        with vpunch
+        with hpunch
+
+        jump end_fight_destroyed
+
+    elif hasCorrectFrequence == False:
+        jump wrong_frequence
+    
+    janeway "Konfiguriert die Phaserbänke entsprechend der Frequenz, die wir erhalten haben und nehmt den Borg Kubus unter Beschuss."
+    ensign "Wie Sie wünschen."
+    scene bg space
+    show voyager at left
+    show cube shield at right
+    with fade
+
+    janeway "Feuer!"
+
+    show voyager attack
+    show cube shield
+    with vpunch
+    with hpunch
+    show cube
+
+    ensign "Schilde des Borg Kubus sind unten."
+
+    scene bg warp core
+    with fade
+    show engineer at left
+    with moveinbottom
+    show janeway angry at right
+    with moveinright
+
+    janeway "Beamen Sie mich rüber."
+    engineer "Jawohl Captain."
+
+    hide janeway
+    with Dissolve(2.0)
+
+    jump beam_success
+
+label attack_queen:
+    janeway "Nehmen Sie den Borg Kubus unter Beschuss."
+
+    scene bg space
+    show voyager at left
+    show cube shield at right
+    with fade
+    
+    if hasSevenFrequence == False:
+        jump borg_shields_up
+    elif hasFrequence == False:
+        jump borg_shields_up
+    
+    if hasSevenFrequence == True:
+        ensign "Uns erreicht eine Nachricht vom Borg Kubus."
+        janeway "Was steht drin?"
+        ensign "Es scheint eine Art Frequenz zu sein."
+        janeway "Die schickt uns bestimmt Seven."
+    elif hasCorrectFrequence == False:
+        jump wrong_frequence
+    
+    janeway "Konfiguriert die Phaserbänke entsprechend der Frequenz, die wir erhalten haben und nehmt den Borg Kubus unter Beschuss."
+    ensign "Wie Sie wünschen."
+    scene bg space
+    show voyager at left
+    show cube shield at right
+    with fade
+
+    janeway "Feuer!"
+
+    show voyager attack
+    show cube shield
+    with vpunch
+    with hpunch
+    show voyager
+    show cube
+
+    ensign "Schilde des Borg Kubus sind unten."
+
+    menu:
+        "Angreifen und Borg Kubus vernichten":
+            janeway "Es spielt keine Rolle, ob wir damit Seven of Nine verlieren. Wir müssen die Borg Königin aufhalten."
+            janeway "Nehmt den Borg Kubus weiter unter Beschuss."
+
+            show voyager attack
+            show cube damaged
+            with vpunch
+            with hpunch
+
+            jump end_fight_win
+        "Auf den Borg Kubus beamen":
+            scene bg warp core
+            with fade
+            show engineer at left
+            with moveinbottom
+            show janeway angry at right
+            with moveinright
+
+            janeway "Beamen Sie mich rüber."
+            engineer "Jawohl Captain."
+
+            hide janeway
+            with Dissolve(2.0)
+
+            jump beam_success
+
+label borg_shields_up:
+    ensign "Sie haben ihre Schilde noch oben. Wir werden Sie nicht durchdringen können."
+    menu:
+        "Borg Kubus unter Beschuss nehmen":
+            janeway "Nehmen Sie den Kubus unter Beschuss."
+            ensign "Aye Captain."
+            show voyager attack
+            show cube shield
+            ensign "Feindliche Schilde halten."
+            show voyager
+            show cube shield
+            queen "Feuer erwidern!"
+            show voyager damaged
+            show cube attack
+            with vpunch
+            with hpunch
+            jump end_fight_destroyed
+        "Warp Kern abwerfen":
+            jump end_warp_core
+        "Fliehen":
+            janeway "Ein weiser Captain muss einsehen, wann er verloren hat. Wir treten den Rückzug an."
+            jump end_flight_without_seven
+
+label wrong_frequence:
+    janeway "Benutzt die Frequenz vom Ferengi Händler, um die Phaserbänke anzupassen."
+    ensign "Wird sofort erledigt."
+    "..."
+    ensign "Phaserbänke wurden umgestellt."
+    janeway "Deaktiviert die feindlichen Schilde."
+
+    scene bg space
+    show voyager at left
+    show cube shield at right
+    with fade
+
+    janeway "Feuer!"
+
+    show voyager attack
+    show cube shield
+
+    janeway "Fähnrich, Bericht."
+    ensign "Die feindlichen Schilde halten."
+    janeway "Der Ferengi hat uns eine falsche Frequenz verkauft." 
+
+    show voyager damaged
+    show cube attack
+    with vpunch
+    with hpunch
+
+    jump end_fight_destroyed
+
+label beam_success:
+    scene bg cube
+    with fade
+    show janeway smile at left
+    with Dissolve(2.0)
+
+    janeway "Janeway an Voyager. Ich bin auf dem Kubus. Nun muss ich Seven finden."
+    ensign "Haben verstanden. Lebenszeichen bewegen sich auf Ihre Koordinaten zu."
+
+    hide janeway
+    with moveoutbottom
+
+    borg "..."
+
+    show borg at center
+    with moveinright
+    borg "..."
+    hide borg
+    with moveoutleft
+
+    seven "Nein nicht! Aufhören!"
+    show janeway angry at left
+    with moveinbottom
+    janeway "Das klang nach Seven. Der Schrei kam von da drüben."
+    hide janeway
+    with moveoutright
+
+    scene bg cube
+    with fade
+    show janeway angry at center
+    with moveinleft
+    janeway "Irgendwie sehen alle Gänge gleich aus."
+    hide janeway angry
+    with moveoutright
+
+    scene bg cube
+    show seven angry at right
+    show queen laughing at center
+    with fade
+    seven "Hör auf damit! Diese Stimmen in meinem Kopf! Aufhören!"
+    queen "Ha ha ha!"
+    queen "Du wirst wieder zu einem Teil von uns."
+    show janeway angry at left
+    with moveinleft
+    queen "Janeway. Wie kommst du hier her? Wieso wurde die Voyager noch nicht zerstört?"
+    janeway "Nenne es Glück oder Einfallsreichtum. Fakt ist, dass ich vor dir stehe."
+    janeway "Und jetzt lass Seven frei."
+    queen "Nicht widerstandslos."
+
+    # Kampf gegen Borg Queen einbauen / Schleife die HP prüft 20 Schaden (Tritt) 40 Schaden (Schlag) - Borg Queen 30 Schaden
 
 return

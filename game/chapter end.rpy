@@ -21,6 +21,29 @@ label end_fight_destroyed:
 
     return
 
+label end_fight_win:
+    show cube damaged
+    with hpunch
+
+    hide cube
+    with vpunch
+
+    scene bg space
+    with fade
+    show epilog
+    with Dissolve(2.0)
+    hide epilog
+    with Dissolve(2.0)
+
+    scene bg space
+
+    "Der Borg Kubus wurde vernichtet."
+    "Doch zu welchem Preis?"
+    "Die Voyager kann ihre Reise durch den Delta Quadranten fortsetzen."
+    "Die Borg Königin wird sie nicht länger verfolgen."
+
+    return
+
 label end_wormhole_destroyed:
     scene bg space
     with fade
