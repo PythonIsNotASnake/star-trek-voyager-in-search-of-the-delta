@@ -19,6 +19,8 @@ default hasCorrectFrequence = False
 default hasSevenFrequence = False
 default tradeSevenWithoutResistance = False
 default isSevenEvil = False
+default queenHp = 100
+default janewayHp = 100
 
 
 # Hier beginnt das Spiel.

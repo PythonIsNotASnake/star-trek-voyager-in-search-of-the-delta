@@ -192,3 +192,5 @@ label end_flight_without_seven:
     with moveoutright
 
     return
+
+return

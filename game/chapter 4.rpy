@@ -135,9 +135,9 @@ label rescue_journey_talk:
                 "Zu langsam":
                     janeway "Geht das nicht schneller?"
                     janeway "Janeway an Maschinendeck. Können wir mit einer höheren Geschwindigkeit fliegen?"
-                    engineer "Wir fliegen aktuell mit Warp 4. Maximal Warp 5 wäre möglich. Andernfalls können die Systeme irreparabel beschädigt werden."
+                    engineer "Wir fliegen aktuell mit Warp Vier. Maximal Warp Fünf wäre möglich. Andernfalls können die Systeme irreparabel beschädigt werden."
                     janeway "Danke für die Auskunft."
-                    janeway "Fähnrich, sie haben es gehört. Gehen Sie auf Warp 5."
+                    janeway "Fähnrich, sie haben es gehört. Gehen Sie auf Warp Fünf."
                     ensign "Wie Sie wünschen Captain."
                     jump rescue_journey_talk
 
@@ -444,6 +444,153 @@ label beam_success:
     janeway "Und jetzt lass Seven frei."
     queen "Nicht widerstandslos."
 
-    # Kampf gegen Borg Queen einbauen / Schleife die HP prüft 20 Schaden (Tritt) 40 Schaden (Schlag) - Borg Queen 30 Schaden
+    jump melee_fight
+
+label melee_fight:
+    scene bg cube
+    with pixellate
+    "Battle"
+    show janeway angry at left
+    with easeinleft
+    show queen angry at right
+    with easeinright
+    "Fight!"
+
+label fight_action:
+    if queenHp <= 0:
+        jump queen_defeated
+    if janewayHp <= 0:
+        jump janeway_defeated
+
+    menu:
+        "Schlagen":
+            show queen angry at right
+            with vpunch
+            with hpunch
+            $ queenHp = queenHp - 20
+            queen "Autsch! Nimm das!"
+
+            show janeway angry at left
+            with vpunch
+            with hpunch
+            $ janewayHp = janewayHp - 30
+            janeway "Argh!"
+
+            jump fight_action
+        "Treten":
+            show queen angry at right
+            with vpunch
+            with hpunch
+            $ queenHp = queenHp - 40
+            queen "Uff! Das bekommst du zurück."
+
+            show janeway angry at left
+            with vpunch
+            with hpunch
+            $ janewayHp = janewayHp - 30
+            janeway "Argh!"
+
+            jump fight_action
+
+label janeway_defeated:
+    scene bg cube
+    show janeway angry at left
+    show queen laughing at center
+    show seven angry at right
+    with pixellate
+
+    show epilog
+    with Dissolve(2.0)
+    hide epilog
+    with Dissolve(2.0)
+
+    janeway "Uff!"
+    hide janeway angry
+    with fade
+    queen "Die Borg triumphieren! Mein Plan ist geglückt und Seven of Nine gehört endlich mir."
+    seven "Nein! Janeway!"
+
+    scene bg space
+    show voyager at left
+    show cube at right
+    with fade
+
+    queen "Janeway wurde besiegt. Vernichtet die Voyager!"
+    show cube attack
+    show voyager damaged
+    with hpunch
+
+    hide voyager
+    with vpunch
+
+    "Captain Janeway wurde im Kampf besiegt und die USS Voyager ist nur noch ein Haufen Trümmer, welche durch das All treiben."
+    "Seven of Nine wird wieder Teil des Borg Kollektivs. Niemand weiß, wie viel Zeit der Menschheit noch bleibt."
+
+    return
+
+label queen_defeated:
+    scene bg cube
+    show janeway smile at left
+    show queen angry at center
+    show seven at right
+    with pixellate
+
+    show epilog
+    with Dissolve(2.0)
+    hide epilog
+    with Dissolve(2.0)
+
+    queen "Uff!"
+    hide queen
+    with fade
+    janeway "Die Borg Königin ist besiegt. Nun lass mich Sie befreien Seven of Nine und dann fliehen wir von hier."
+    seven "Ich dachte schon sie würde gewinnen und ihren Plan umsetzen."
+    janeway "Voyager, zwei Personen zum Beamen."
+
+    hide janeway
+    hide seven
+    with Dissolve(2.0)
+
+    scene bg voyager bridge
+    with fade
+    show janeway smile at left
+    show seven at right
+    with Dissolve(2.0)
+
+    janeway "Fähnrich, machen Sie die Waffensysteme bereit. Zerstören wir diesen Kubus."
+    ensign "Mit Vergnügen."
+
+    scene bg space
+    show voyager at left
+    show cube at right
+    with fade
+
+    janeway "Feuer!"
+    show voyager attack
+    show cube damaged
+    with hpunch
+
+    hide cube
+    with vpunch
+
+    show voyager
+
+    janeway "Fähnrich, bringen Sie uns von hier weg. Gehen Sie auf Warp Neun."
+
+    show voyager warp
+    hide voyager
+    with moveoutright
+
+    "Dieses Abenteuer endet hier."
+    "Doch die Reise der USS Voyager und ihrer Besatzung geht weiter."
+
+    scene bg space
+    show intro
+    with MoveTransition(delay=4.0, enter=_movebottom)
+    hide intro
+    with Dissolve(5.0)
+
+    return
+
 
 return
