@@ -171,7 +171,7 @@ label ferengi_contact:
     show ferengi at right
     with dissolve
 
-    janeway "Ich bin Kapitän Janeway vom Föderations Raumschiff Voyager."
+    janeway "Ich bin Captain Janeway vom Föderations Raumschiff Voyager."
     ferengi "Mein Name ist Nanzo. Ich bin Händler und immer auf der Suche nach lukrativer Beute... äh ich meinte einem fairen Handel."
     ferengi "Wie ich sehe haben Sie Kampfspuren von einer Auseinandersetzung mit den Borg."
     ferengi "Zu Ihrem Glück besitze ich eine Phaser Frequenz, welche einem Borg Kubus gefährlich werden kann."

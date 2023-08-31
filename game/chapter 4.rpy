@@ -286,9 +286,7 @@ label attack_queen:
     show cube shield at right
     with fade
     
-    if hasSevenFrequence == False:
-        jump borg_shields_up
-    elif hasFrequence == False:
+    if hasSevenFrequence == False and hasFrequence == False:
         jump borg_shields_up
     
     if hasSevenFrequence == True:
