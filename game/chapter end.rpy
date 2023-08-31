@@ -55,7 +55,7 @@ label end_wormhole_destroyed:
     scene bg space
 
     show core at center
-    with moveinleft
+    with easeinleft
 
     "Das Wurmloch war instabil und ist kolabiert."
     "Die Außenhülle der Voyager ist gerissen und die Besatzung konnte nicht rechtzeitig gerettet werden."
@@ -132,7 +132,7 @@ label end_success:
     scene bg space
 
     show voyager at center
-    with moveinleft
+    with easeinleft
 
     "Die Voyager konnte erfolgreich entkommen."
     "Keine Borg in der Umgebung."
@@ -146,7 +146,7 @@ label end_success:
 label end_warp_core:
     janeway "Maschinendeck, werfen Sie den Warp-Kern ab!"
     show core at center
-    with moveinbottom
+    with easeinbottom
 
     pause 0.5
 
@@ -181,7 +181,7 @@ label end_flight_without_seven:
     scene bg space
 
     show voyager at center
-    with moveinleft
+    with easeinleft
 
     "Die Voyager konnte erfolgreich entkommen."
     "Leider ohne Seven of Nine."

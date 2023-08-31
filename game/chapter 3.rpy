@@ -12,12 +12,12 @@ label second_contact:
     with fade
 
     show janeway smile at left
-    with moveinleft
+    with easeinleft
 
     janeway "Lagebericht Fähnrich."
     
     show ensign at right
-    with moveinright
+    with easeinright
 
     ensign "Wir konnten den Borg entkommen."
     janeway "Wenigstens etwas Erfreuliches."
@@ -26,7 +26,7 @@ label second_contact:
     scene bg warp core
     with fade
     show engineer at center
-    with moveinbottom
+    with easeinbottom
 
     engineer "Die Außenhülle ist leicht angeschlagen."
     janeway "Wie lange brauchen Sie für die Reparaturen?"
@@ -45,7 +45,7 @@ label second_contact:
     janeway "Scannen Sie den Sektor. Ich willen wissen, was da draußen ist."
 
     show seven at right
-    with moveinright
+    with easeinright
     seven "Eine Verzerrung ganz in der Nähe. Den Sensoren zufolge taucht gleich ein Schiff auf."
     jump queen_contact
 
@@ -69,7 +69,7 @@ label queen_contact:
     with fade
 
     show queen at right
-    with moveinright
+    with easeinright
 
     janeway "Ich bin Kathryn Janeway. Captain des Föderationsraumschiffs USS Voyager. Mit wem habe ich das Vergnügen?"
     queen "Ich bin der Anfang, das Ende, die Eine, die Viele ist. Ich bin die Borg."
@@ -161,12 +161,12 @@ label thinking_after_kidnapping:
     with fade
 
     show ensign at right
-    with moveinright
+    with easeinright
 
     if tradeSevenWithoutResistance == True:
         ensign "Wieso haben Sie Seven of Nine freiwillig den Borg übergeben?"
         show janeway smile at left
-        with moveinleft
+        with easeinleft
         janeway "Dies tat ich nur um die Borg Königin in Sicherheit zu wiegen."
         ensign "In Sicherheit zu wiegen? Aber wozu?"
         janeway "Weil Sie jetzt die Gejagte ist und nicht mehr wir. Die Situation hat sich um 180 Grad gedreht. Das bringt uns möglicherweise einen taktischen Vorteil."
@@ -174,7 +174,7 @@ label thinking_after_kidnapping:
     if tradeSevenWithoutResistance == False:
         ensign "Wie lauten Ihre Befehle?"
         show janeway smile at left
-        with moveinleft
+        with easeinleft
 
     menu:
         "Verfolgen":

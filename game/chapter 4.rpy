@@ -25,7 +25,7 @@ label rescue_mission:
 label good_seven:
     show queen at right
     show seven angry at left
-    with moveinright
+    with easeinright
 
     queen "Kommst du nun endlich zur Besinnung und schließt dich uns an oder muss ich dich dazu zwingen?"
 
@@ -42,7 +42,7 @@ label good_seven:
 label bad_seven:
     show queen laughing at right
     show seven at left
-    with moveinright
+    with easeinright
 
     queen "Endlich hast du dich zurück besonnen. Hier gehörst du hin."
     queen "Wir sind deine wahre Familie. Betrachte mich einfach als deine Mutter."
@@ -61,7 +61,7 @@ label prisoner:
     queen "Dann sehe ich keinen anderen Weg, als dich mit Gewalt ins Kollektiv aufzunehmen."
     queen "Drohnen, führt sie ab."
     show borg at center
-    with moveinbottom
+    with easeinbottom
     borg "Fügen Sie sich Seven of Nine und folgen Sie uns."
     seven "Argh..."
     hide seven
@@ -114,10 +114,10 @@ label voyager_preparation:
     scene bg voyager bridge
     with fade
     show janeway smile at left
-    with moveinleft
+    with easeinleft
     janeway "Gibt es bereits eine Spur vom Borg Kubus?"
     show ensign at right
-    with moveinright
+    with easeinright
     ensign "Wir konnten den Kubus lokalisieren."
     janeway "Sehr gut."
     jump rescue_journey_talk
@@ -151,7 +151,7 @@ label machine_talk:
     scene bg warp core
     with fade
     show engineer at center
-    with moveinbottom
+    with easeinbottom
     engineer "Hier Maschinendeck. Was kann ich für Sie tun?"
     jump machine_talk_decisions
 
@@ -187,7 +187,7 @@ label rescue_location:
     show cube at right
     with fade
     show voyager warp at left
-    with moveinleft
+    with easeinleft
     show voyager
 
     "Die USS Voyager hat endlich den Borg Kubus erreicht, auf welchem sich Seven of Nine aufhält."
@@ -210,7 +210,7 @@ label rescue_decisions:
 label negotiation:
     janeway "Rufen Sie den Borg Kubus."
     show queen at right
-    with moveinright
+    with easeinright
     queen "Captain Janeway. Welch unerwartete Überraschung Sie wiederzusehen."
     janeway "Schluss mit den Höflichkeitsfloskeln. Was haben Sie mit Seven angestellt."
     show queen laughing
@@ -266,9 +266,9 @@ label beam:
     scene bg warp core
     with fade
     show engineer at left
-    with moveinbottom
+    with easeinbottom
     show janeway angry at right
-    with moveinright
+    with easeinright
 
     janeway "Beamen Sie mich rüber."
     engineer "Jawohl Captain."
@@ -330,9 +330,9 @@ label attack_queen:
             scene bg warp core
             with fade
             show engineer at left
-            with moveinbottom
+            with easeinbottom
             show janeway angry at right
-            with moveinright
+            with easeinright
 
             janeway "Beamen Sie mich rüber."
             engineer "Jawohl Captain."
@@ -408,14 +408,14 @@ label beam_success:
     borg "..."
 
     show borg at center
-    with moveinright
+    with easeinright
     borg "..."
     hide borg
     with moveoutleft
 
     seven "Nein nicht! Aufhören!"
     show janeway angry at left
-    with moveinbottom
+    with easeinbottom
     janeway "Das klang nach Seven. Der Schrei kam von da drüben."
     hide janeway
     with moveoutright
@@ -423,7 +423,7 @@ label beam_success:
     scene bg cube
     with fade
     show janeway angry at center
-    with moveinleft
+    with easeinleft
     janeway "Irgendwie sehen alle Gänge gleich aus."
     hide janeway angry
     with moveoutright
@@ -436,7 +436,7 @@ label beam_success:
     queen "Ha ha ha!"
     queen "Du wirst wieder zu einem Teil von uns."
     show janeway angry at left
-    with moveinleft
+    with easeinleft
     queen "Janeway. Wie kommst du hier her? Wieso wurde die Voyager noch nicht zerstört?"
     janeway "Nenne es Glück oder Einfallsreichtum. Fakt ist, dass ich vor dir stehe."
     janeway "Und jetzt lass Seven frei."
@@ -497,10 +497,18 @@ label janeway_defeated:
     show seven angry at right
     with pixellate
 
+    scene bg space
+    with fade
     show epilog
     with Dissolve(2.0)
     hide epilog
     with Dissolve(2.0)
+
+    scene bg cube
+    show janeway angry at left
+    show queen laughing at center
+    show seven angry at right
+    with fade
 
     janeway "Uff!"
     hide janeway angry
@@ -533,10 +541,18 @@ label queen_defeated:
     show seven at right
     with pixellate
 
+    scene bg space
+    with fade
     show epilog
     with Dissolve(2.0)
     hide epilog
     with Dissolve(2.0)
+
+    scene bg cube
+    show janeway smile at left
+    show queen angry at center
+    show seven at right
+    with fade
 
     queen "Uff!"
     hide queen

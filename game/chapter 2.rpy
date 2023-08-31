@@ -5,7 +5,7 @@ label first_escape:
     with fade
 
     show janeway angry at left
-    with moveinleft
+    with easeinleft
 
     menu:
         "Fliehen mit Warp Sieben":
@@ -17,14 +17,14 @@ label escape_warp_seven:
     janeway "Gehen Sie auf Warp Sieben."
 
     show ensign at right
-    with moveinright
+    with easeinright
 
     ensign "Wie Sie wünschen Captain."
 
     scene bg space warp
     with fade
     show voyager warp at center
-    with moveinleft
+    with easeinleft
 
     "Die Voyager flieht mit Warp Sieben..."
 
@@ -44,14 +44,14 @@ label escape_warp_nine:
     janeway "Gehen Sie auf Warp Neun."
 
     show ensign at right
-    with moveinright
+    with easeinright
 
     ensign "Wie Sie wünschen Captain."
 
     scene bg space warp
     with fade
     show voyager warp at center
-    with moveinleft
+    with easeinleft
 
     "Die Voyager flieht mit Warp Neun..."
 
@@ -77,7 +77,7 @@ label worm_hole_danger:
     with fade
 
     show voyager warp at left
-    with moveinleft
+    with easeinleft
     show voyager at left
 
     ensign "Captain, ein Wurmloch voraus."
@@ -98,7 +98,7 @@ label worm_hole_journey:
     with fade
 
     show voyager at center
-    with moveinleft
+    with easeinleft
 
     pause 2.0
 
@@ -112,7 +112,7 @@ label worm_hole_save:
     with fade
 
     show voyager warp at left
-    with moveinleft
+    with easeinleft
     show voyager at left
 
     ensign "Captain, schon wieder ein Wurmloch voraus."
@@ -139,7 +139,7 @@ label ferengi:
     with fade
 
     show voyager warp at left
-    with moveinleft
+    with easeinleft
     show voyager at left
 
     seven "Ein Ferengi Schiff genau vor uns."
@@ -156,11 +156,11 @@ label ferengi_contact:
     with fade
 
     show janeway smile at left
-    with moveinleft
+    with easeinleft
     janeway "Öffnen Sie einen Kanal!"
 
     show seven at right
-    with moveinright
+    with easeinright
     seven "Grußfrequenzen aktiviert."
     seven "Sie antworten."
     janeway "Auf den Schirm"

@@ -23,7 +23,7 @@ label first_talk_with_borg:
     "Seven of Nine stellt die Verbindung her..."
 
     show borg at right
-    with moveinright
+    with easeinright
 
     borg "Wir sind die Borg. Deaktivieren Sie Ihre Schutzschilde und ergeben Sie sich. Wir werden Ihre biologischen und technologischen Charakteristika den unseren hinzufügen. Ihre Kultur wird sich anpassen und uns dienen. Widerstand ist zwecklos!"
     menu:
@@ -104,7 +104,7 @@ label first_fight_continue:
     scene bg warp core
     with fade
     show engineer at center
-    with moveinbottom
+    with easeinbottom
 
     engineer "Captain, wir haben einen Hüllenbruch erlitten."
     engineer "Wie lauten Ihre Befehle?"
