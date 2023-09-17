@@ -1,1 +1,1 @@
-# star-trek-voyager-in-search-of-the-delta
+<img src="game/gui/main_menu.png" width="auto" alt="Cover"/>
